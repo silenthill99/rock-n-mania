@@ -19,7 +19,8 @@
     "db:migrate": "dotenv -e .env.local -- prisma migrate dev",
     "db:studio": "dotenv -e .env.local -- prisma studio",
     "db:seed": "dotenv -e .env.local -- prisma db seed",
-    "db:deploy": "dotenv -e .env.local -- prisma migrate deploy"
+    "db:deploy": "dotenv -e .env.local -- prisma migrate deploy",
+    "vercel-build": "prisma generate && prisma migrate deploy && next build"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.4.2",
