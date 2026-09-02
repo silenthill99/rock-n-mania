@@ -66,3 +66,8 @@ export type Verification = Prisma.VerificationModel
  * 
  */
 export type Clip = Prisma.ClipModel
+/**
+ * Model Todo
+ * 
+ */
+export type Todo = Prisma.TodoModel

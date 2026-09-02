@@ -36,26 +36,29 @@ export type ClipSumAggregateOutputType = {
 
 export type ClipMinAggregateOutputType = {
   id: number | null
+  userId: string | null
   title: string | null
   url: string | null
   createdAt: Date | null
-  updatedAr: Date | null
+  updatedAt: Date | null
 }
 
 export type ClipMaxAggregateOutputType = {
   id: number | null
+  userId: string | null
   title: string | null
   url: string | null
   createdAt: Date | null
-  updatedAr: Date | null
+  updatedAt: Date | null
 }
 
 export type ClipCountAggregateOutputType = {
   id: number
+  userId: number
   title: number
   url: number
   createdAt: number
-  updatedAr: number
+  updatedAt: number
   _all: number
 }
 
@@ -70,26 +73,29 @@ export type ClipSumAggregateInputType = {
 
 export type ClipMinAggregateInputType = {
   id?: true
+  userId?: true
   title?: true
   url?: true
   createdAt?: true
-  updatedAr?: true
+  updatedAt?: true
 }
 
 export type ClipMaxAggregateInputType = {
   id?: true
+  userId?: true
   title?: true
   url?: true
   createdAt?: true
-  updatedAr?: true
+  updatedAt?: true
 }
 
 export type ClipCountAggregateInputType = {
   id?: true
+  userId?: true
   title?: true
   url?: true
   createdAt?: true
-  updatedAr?: true
+  updatedAt?: true
   _all?: true
 }
 
@@ -181,10 +187,11 @@ export type ClipGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 
 export type ClipGroupByOutputType = {
   id: number
+  userId: string
   title: string
   url: string
   createdAt: Date
-  updatedAr: Date
+  updatedAt: Date
   _count: ClipCountAggregateOutputType | null
   _avg: ClipAvgAggregateOutputType | null
   _sum: ClipSumAggregateOutputType | null
@@ -212,18 +219,22 @@ export type ClipWhereInput = {
   OR?: Prisma.ClipWhereInput[]
   NOT?: Prisma.ClipWhereInput | Prisma.ClipWhereInput[]
   id?: Prisma.IntFilter<"Clip"> | number
+  userId?: Prisma.StringFilter<"Clip"> | string
   title?: Prisma.StringFilter<"Clip"> | string
   url?: Prisma.StringFilter<"Clip"> | string
   createdAt?: Prisma.DateTimeFilter<"Clip"> | Date | string
-  updatedAr?: Prisma.DateTimeFilter<"Clip"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Clip"> | Date | string
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
 export type ClipOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   title?: Prisma.SortOrder
   url?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  updatedAr?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  user?: Prisma.UserOrderByWithRelationInput
 }
 
 export type ClipWhereUniqueInput = Prisma.AtLeast<{
@@ -231,18 +242,21 @@ export type ClipWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.ClipWhereInput | Prisma.ClipWhereInput[]
   OR?: Prisma.ClipWhereInput[]
   NOT?: Prisma.ClipWhereInput | Prisma.ClipWhereInput[]
+  userId?: Prisma.StringFilter<"Clip"> | string
   title?: Prisma.StringFilter<"Clip"> | string
   url?: Prisma.StringFilter<"Clip"> | string
   createdAt?: Prisma.DateTimeFilter<"Clip"> | Date | string
-  updatedAr?: Prisma.DateTimeFilter<"Clip"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Clip"> | Date | string
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id">
 
 export type ClipOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   title?: Prisma.SortOrder
   url?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  updatedAr?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   _count?: Prisma.ClipCountOrderByAggregateInput
   _avg?: Prisma.ClipAvgOrderByAggregateInput
   _max?: Prisma.ClipMaxOrderByAggregateInput
@@ -255,71 +269,89 @@ export type ClipScalarWhereWithAggregatesInput = {
   OR?: Prisma.ClipScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ClipScalarWhereWithAggregatesInput | Prisma.ClipScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Clip"> | number
+  userId?: Prisma.StringWithAggregatesFilter<"Clip"> | string
   title?: Prisma.StringWithAggregatesFilter<"Clip"> | string
   url?: Prisma.StringWithAggregatesFilter<"Clip"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Clip"> | Date | string
-  updatedAr?: Prisma.DateTimeWithAggregatesFilter<"Clip"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Clip"> | Date | string
 }
 
 export type ClipCreateInput = {
   title: string
   url: string
   createdAt?: Date | string
-  updatedAr?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutClipsInput
 }
 
 export type ClipUncheckedCreateInput = {
   id?: number
+  userId: string
   title: string
   url: string
   createdAt?: Date | string
-  updatedAr?: Date | string
+  updatedAt?: Date | string
 }
 
 export type ClipUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   url?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAr?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutClipsNestedInput
 }
 
 export type ClipUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   url?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAr?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ClipCreateManyInput = {
   id?: number
+  userId: string
   title: string
   url: string
   createdAt?: Date | string
-  updatedAr?: Date | string
+  updatedAt?: Date | string
 }
 
 export type ClipUpdateManyMutationInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   url?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAr?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ClipUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   url?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAr?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ClipListRelationFilter = {
+  every?: Prisma.ClipWhereInput
+  some?: Prisma.ClipWhereInput
+  none?: Prisma.ClipWhereInput
+}
+
+export type ClipOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type ClipCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   title?: Prisma.SortOrder
   url?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  updatedAr?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type ClipAvgOrderByAggregateInput = {
@@ -328,22 +360,66 @@ export type ClipAvgOrderByAggregateInput = {
 
 export type ClipMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   title?: Prisma.SortOrder
   url?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  updatedAr?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type ClipMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   title?: Prisma.SortOrder
   url?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  updatedAr?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type ClipSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
+}
+
+export type ClipCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.ClipCreateWithoutUserInput, Prisma.ClipUncheckedCreateWithoutUserInput> | Prisma.ClipCreateWithoutUserInput[] | Prisma.ClipUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.ClipCreateOrConnectWithoutUserInput | Prisma.ClipCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.ClipCreateManyUserInputEnvelope
+  connect?: Prisma.ClipWhereUniqueInput | Prisma.ClipWhereUniqueInput[]
+}
+
+export type ClipUncheckedCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.ClipCreateWithoutUserInput, Prisma.ClipUncheckedCreateWithoutUserInput> | Prisma.ClipCreateWithoutUserInput[] | Prisma.ClipUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.ClipCreateOrConnectWithoutUserInput | Prisma.ClipCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.ClipCreateManyUserInputEnvelope
+  connect?: Prisma.ClipWhereUniqueInput | Prisma.ClipWhereUniqueInput[]
+}
+
+export type ClipUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.ClipCreateWithoutUserInput, Prisma.ClipUncheckedCreateWithoutUserInput> | Prisma.ClipCreateWithoutUserInput[] | Prisma.ClipUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.ClipCreateOrConnectWithoutUserInput | Prisma.ClipCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.ClipUpsertWithWhereUniqueWithoutUserInput | Prisma.ClipUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.ClipCreateManyUserInputEnvelope
+  set?: Prisma.ClipWhereUniqueInput | Prisma.ClipWhereUniqueInput[]
+  disconnect?: Prisma.ClipWhereUniqueInput | Prisma.ClipWhereUniqueInput[]
+  delete?: Prisma.ClipWhereUniqueInput | Prisma.ClipWhereUniqueInput[]
+  connect?: Prisma.ClipWhereUniqueInput | Prisma.ClipWhereUniqueInput[]
+  update?: Prisma.ClipUpdateWithWhereUniqueWithoutUserInput | Prisma.ClipUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.ClipUpdateManyWithWhereWithoutUserInput | Prisma.ClipUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.ClipScalarWhereInput | Prisma.ClipScalarWhereInput[]
+}
+
+export type ClipUncheckedUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.ClipCreateWithoutUserInput, Prisma.ClipUncheckedCreateWithoutUserInput> | Prisma.ClipCreateWithoutUserInput[] | Prisma.ClipUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.ClipCreateOrConnectWithoutUserInput | Prisma.ClipCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.ClipUpsertWithWhereUniqueWithoutUserInput | Prisma.ClipUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.ClipCreateManyUserInputEnvelope
+  set?: Prisma.ClipWhereUniqueInput | Prisma.ClipWhereUniqueInput[]
+  disconnect?: Prisma.ClipWhereUniqueInput | Prisma.ClipWhereUniqueInput[]
+  delete?: Prisma.ClipWhereUniqueInput | Prisma.ClipWhereUniqueInput[]
+  connect?: Prisma.ClipWhereUniqueInput | Prisma.ClipWhereUniqueInput[]
+  update?: Prisma.ClipUpdateWithWhereUniqueWithoutUserInput | Prisma.ClipUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.ClipUpdateManyWithWhereWithoutUserInput | Prisma.ClipUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.ClipScalarWhereInput | Prisma.ClipScalarWhereInput[]
 }
 
 export type IntFieldUpdateOperationsInput = {
@@ -354,51 +430,154 @@ export type IntFieldUpdateOperationsInput = {
   divide?: number
 }
 
+export type ClipCreateWithoutUserInput = {
+  title: string
+  url: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ClipUncheckedCreateWithoutUserInput = {
+  id?: number
+  title: string
+  url: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ClipCreateOrConnectWithoutUserInput = {
+  where: Prisma.ClipWhereUniqueInput
+  create: Prisma.XOR<Prisma.ClipCreateWithoutUserInput, Prisma.ClipUncheckedCreateWithoutUserInput>
+}
+
+export type ClipCreateManyUserInputEnvelope = {
+  data: Prisma.ClipCreateManyUserInput | Prisma.ClipCreateManyUserInput[]
+  skipDuplicates?: boolean
+}
+
+export type ClipUpsertWithWhereUniqueWithoutUserInput = {
+  where: Prisma.ClipWhereUniqueInput
+  update: Prisma.XOR<Prisma.ClipUpdateWithoutUserInput, Prisma.ClipUncheckedUpdateWithoutUserInput>
+  create: Prisma.XOR<Prisma.ClipCreateWithoutUserInput, Prisma.ClipUncheckedCreateWithoutUserInput>
+}
+
+export type ClipUpdateWithWhereUniqueWithoutUserInput = {
+  where: Prisma.ClipWhereUniqueInput
+  data: Prisma.XOR<Prisma.ClipUpdateWithoutUserInput, Prisma.ClipUncheckedUpdateWithoutUserInput>
+}
+
+export type ClipUpdateManyWithWhereWithoutUserInput = {
+  where: Prisma.ClipScalarWhereInput
+  data: Prisma.XOR<Prisma.ClipUpdateManyMutationInput, Prisma.ClipUncheckedUpdateManyWithoutUserInput>
+}
+
+export type ClipScalarWhereInput = {
+  AND?: Prisma.ClipScalarWhereInput | Prisma.ClipScalarWhereInput[]
+  OR?: Prisma.ClipScalarWhereInput[]
+  NOT?: Prisma.ClipScalarWhereInput | Prisma.ClipScalarWhereInput[]
+  id?: Prisma.IntFilter<"Clip"> | number
+  userId?: Prisma.StringFilter<"Clip"> | string
+  title?: Prisma.StringFilter<"Clip"> | string
+  url?: Prisma.StringFilter<"Clip"> | string
+  createdAt?: Prisma.DateTimeFilter<"Clip"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Clip"> | Date | string
+}
+
+export type ClipCreateManyUserInput = {
+  id?: number
+  title: string
+  url: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ClipUpdateWithoutUserInput = {
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ClipUncheckedUpdateWithoutUserInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ClipUncheckedUpdateManyWithoutUserInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 
 
 export type ClipSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  userId?: boolean
   title?: boolean
   url?: boolean
   createdAt?: boolean
-  updatedAr?: boolean
+  updatedAt?: boolean
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["clip"]>
 
 export type ClipSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  userId?: boolean
   title?: boolean
   url?: boolean
   createdAt?: boolean
-  updatedAr?: boolean
+  updatedAt?: boolean
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["clip"]>
 
 export type ClipSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  userId?: boolean
   title?: boolean
   url?: boolean
   createdAt?: boolean
-  updatedAr?: boolean
+  updatedAt?: boolean
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["clip"]>
 
 export type ClipSelectScalar = {
   id?: boolean
+  userId?: boolean
   title?: boolean
   url?: boolean
   createdAt?: boolean
-  updatedAr?: boolean
+  updatedAt?: boolean
 }
 
-export type ClipOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "url" | "createdAt" | "updatedAr", ExtArgs["result"]["clip"]>
+export type ClipOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "title" | "url" | "createdAt" | "updatedAt", ExtArgs["result"]["clip"]>
+export type ClipInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+}
+export type ClipIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+}
+export type ClipIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+}
 
 export type $ClipPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Clip"
-  objects: {}
+  objects: {
+    user: Prisma.$UserPayload<ExtArgs>
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
+    userId: string
     title: string
     url: string
     createdAt: Date
-    updatedAr: Date
+    updatedAt: Date
   }, ExtArgs["result"]["clip"]>
   composites: {}
 }
@@ -793,6 +972,7 @@ readonly fields: ClipFieldRefs;
  */
 export interface Prisma__ClipClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -823,10 +1003,11 @@ export interface Prisma__ClipClient<T, Null = never, ExtArgs extends runtime.Typ
  */
 export interface ClipFieldRefs {
   readonly id: Prisma.FieldRef<"Clip", 'Int'>
+  readonly userId: Prisma.FieldRef<"Clip", 'String'>
   readonly title: Prisma.FieldRef<"Clip", 'String'>
   readonly url: Prisma.FieldRef<"Clip", 'String'>
   readonly createdAt: Prisma.FieldRef<"Clip", 'DateTime'>
-  readonly updatedAr: Prisma.FieldRef<"Clip", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Clip", 'DateTime'>
 }
     
 
@@ -843,6 +1024,10 @@ export type ClipFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Omit specific fields from the Clip
    */
   omit?: Prisma.ClipOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ClipInclude<ExtArgs> | null
   /**
    * Filter, which Clip to fetch.
    */
@@ -862,6 +1047,10 @@ export type ClipFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.I
    */
   omit?: Prisma.ClipOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ClipInclude<ExtArgs> | null
+  /**
    * Filter, which Clip to fetch.
    */
   where: Prisma.ClipWhereUniqueInput
@@ -879,6 +1068,10 @@ export type ClipFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Omit specific fields from the Clip
    */
   omit?: Prisma.ClipOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ClipInclude<ExtArgs> | null
   /**
    * Filter, which Clip to fetch.
    */
@@ -928,6 +1121,10 @@ export type ClipFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.In
    */
   omit?: Prisma.ClipOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ClipInclude<ExtArgs> | null
+  /**
    * Filter, which Clip to fetch.
    */
   where?: Prisma.ClipWhereInput
@@ -975,6 +1172,10 @@ export type ClipFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    * Omit specific fields from the Clip
    */
   omit?: Prisma.ClipOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ClipInclude<ExtArgs> | null
   /**
    * Filter, which Clips to fetch.
    */
@@ -1024,6 +1225,10 @@ export type ClipCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    */
   omit?: Prisma.ClipOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ClipInclude<ExtArgs> | null
+  /**
    * The data needed to create a Clip.
    */
   data: Prisma.XOR<Prisma.ClipCreateInput, Prisma.ClipUncheckedCreateInput>
@@ -1057,6 +1262,10 @@ export type ClipCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions
    */
   data: Prisma.ClipCreateManyInput | Prisma.ClipCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ClipIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1071,6 +1280,10 @@ export type ClipUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    * Omit specific fields from the Clip
    */
   omit?: Prisma.ClipOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ClipInclude<ExtArgs> | null
   /**
    * The data needed to update a Clip.
    */
@@ -1123,6 +1336,10 @@ export type ClipUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions
    * Limit how many Clips to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ClipIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1137,6 +1354,10 @@ export type ClipUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    * Omit specific fields from the Clip
    */
   omit?: Prisma.ClipOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ClipInclude<ExtArgs> | null
   /**
    * The filter to search for the Clip to update in case it exists.
    */
@@ -1163,6 +1384,10 @@ export type ClipDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    * Omit specific fields from the Clip
    */
   omit?: Prisma.ClipOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ClipInclude<ExtArgs> | null
   /**
    * Filter which Clip to delete.
    */
@@ -1195,4 +1420,8 @@ export type ClipDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
    * Omit specific fields from the Clip
    */
   omit?: Prisma.ClipOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ClipInclude<ExtArgs> | null
 }

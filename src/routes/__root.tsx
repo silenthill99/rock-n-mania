@@ -3,6 +3,8 @@ import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 
 import appCss from '../styles.css?url'
+import DesktopMenu from '#/components/desktop-menu.tsx'
+import type { Menu } from '#/types'
 
 export const Route = createRootRoute({
   head: () => ({
@@ -29,12 +31,19 @@ export const Route = createRootRoute({
 })
 
 function RootDocument({ children }: { children: React.ReactNode }) {
+  const menu:Menu[] = [{
+    label: "Accueil",
+    url: "/"
+  }]
   return (
     <html lang="en">
       <head>
         <HeadContent />
       </head>
-      <body>
+      <body className={"bg-black text-white"}>
+      <header className={"container mx-auto"}>
+        <DesktopMenu menu={menu}/>
+      </header>
         {children}
         <TanStackDevtools
           config={{
