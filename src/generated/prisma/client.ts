@@ -66,3 +66,8 @@ export type Account = Prisma.AccountModel
  * 
  */
 export type Verification = Prisma.VerificationModel
+/**
+ * Model Clip
+ * 
+ */
+export type Clip = Prisma.ClipModel

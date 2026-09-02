@@ -1,4 +1,3 @@
-
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
@@ -77,4 +76,12 @@ model Verification {
 
   @@index([identifier])
   @@map("verification")
+}
+
+model Clip {
+  id        Int      @id @default(autoincrement())
+  title     String   @db.VarChar(255)
+  url       String   @db.VarChar(255)
+  createdAt DateTime @default(now())
+  updatedAr DateTime @updatedAt
 }

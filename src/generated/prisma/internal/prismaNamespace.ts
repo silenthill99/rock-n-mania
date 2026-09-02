@@ -401,7 +401,8 @@ export const ModelName = {
   User: 'User',
   Session: 'Session',
   Account: 'Account',
-  Verification: 'Verification'
+  Verification: 'Verification',
+  Clip: 'Clip'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -417,7 +418,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "todo" | "user" | "session" | "account" | "verification"
+    modelProps: "todo" | "user" | "session" | "account" | "verification" | "clip"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -791,6 +792,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Clip: {
+      payload: Prisma.$ClipPayload<ExtArgs>
+      fields: Prisma.ClipFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ClipFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClipPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ClipFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClipPayload>
+        }
+        findFirst: {
+          args: Prisma.ClipFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClipPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ClipFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClipPayload>
+        }
+        findMany: {
+          args: Prisma.ClipFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClipPayload>[]
+        }
+        create: {
+          args: Prisma.ClipCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClipPayload>
+        }
+        createMany: {
+          args: Prisma.ClipCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ClipCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClipPayload>[]
+        }
+        delete: {
+          args: Prisma.ClipDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClipPayload>
+        }
+        update: {
+          args: Prisma.ClipUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClipPayload>
+        }
+        deleteMany: {
+          args: Prisma.ClipDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ClipUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ClipUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClipPayload>[]
+        }
+        upsert: {
+          args: Prisma.ClipUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClipPayload>
+        }
+        aggregate: {
+          args: Prisma.ClipAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateClip>
+        }
+        groupBy: {
+          args: Prisma.ClipGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ClipGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ClipCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ClipCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -896,6 +971,17 @@ export const VerificationScalarFieldEnum = {
 } as const
 
 export type VerificationScalarFieldEnum = (typeof VerificationScalarFieldEnum)[keyof typeof VerificationScalarFieldEnum]
+
+
+export const ClipScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  url: 'url',
+  createdAt: 'createdAt',
+  updatedAr: 'updatedAr'
+} as const
+
+export type ClipScalarFieldEnum = (typeof ClipScalarFieldEnum)[keyof typeof ClipScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1146,6 +1232,7 @@ export type GlobalOmitConfig = {
   session?: Prisma.SessionOmit
   account?: Prisma.AccountOmit
   verification?: Prisma.VerificationOmit
+  clip?: Prisma.ClipOmit
 }
 
 /* Types for Logging */

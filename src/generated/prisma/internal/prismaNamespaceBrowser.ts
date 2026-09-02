@@ -55,7 +55,8 @@ export const ModelName = {
   User: 'User',
   Session: 'Session',
   Account: 'Account',
-  Verification: 'Verification'
+  Verification: 'Verification',
+  Clip: 'Clip'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -140,6 +141,17 @@ export const VerificationScalarFieldEnum = {
 } as const
 
 export type VerificationScalarFieldEnum = (typeof VerificationScalarFieldEnum)[keyof typeof VerificationScalarFieldEnum]
+
+
+export const ClipScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  url: 'url',
+  createdAt: 'createdAt',
+  updatedAr: 'updatedAr'
+} as const
+
+export type ClipScalarFieldEnum = (typeof ClipScalarFieldEnum)[keyof typeof ClipScalarFieldEnum]
 
 
 export const SortOrder = {

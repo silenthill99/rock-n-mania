@@ -4,15 +4,23 @@ import { prisma } from '#/db.ts'
 
 export const Route = createFileRoute('/')({
   component: Home,
-  loader: () => getTodos(),
+  loader: async () => Promise.all([await getTodos(), await getUsers(), await getClips()]),
 })
 
 const getTodos = createServerFn({ method: 'GET' }).handler(() =>
   prisma.todo.findMany(),
 )
 
+const getUsers = createServerFn({ method: 'GET' }).handler(() =>
+  prisma.user.findMany(),
+)
+
+const getClips = createServerFn({ method: 'GET' }).handler(() =>
+  prisma.clip.findMany()
+)
+
 function Home() {
-  const todos = Route.useLoaderData()
+  const [todos, users, clips] = Route.useLoaderData()
   return (
     <div className="p-8">
       <h1 className="text-4xl font-bold">Welcome to TanStack Start12345</h1>
@@ -20,6 +28,8 @@ function Home() {
         Edit <code>src/routes/index.tsx</code> to get started.
       </p>
       <p>{todos.length}</p>
+      <p>{users.length}</p>
+      <p>{clips.length}</p>
     </div>
   )
 }
