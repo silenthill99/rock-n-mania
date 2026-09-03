@@ -160,6 +160,7 @@ export type TodoScalarFieldEnum = (typeof TodoScalarFieldEnum)[keyof typeof Todo
 export const AlbumScalarFieldEnum = {
   id: 'id',
   title: 'title',
+  slug: 'slug',
   tracklist: 'tracklist',
   releasedAt: 'releasedAt',
   createdAt: 'createdAt',

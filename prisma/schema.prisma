@@ -93,10 +93,11 @@ model Todo {
 model Album {
   id         Int      @id @default(autoincrement())
   title      String   @db.VarChar(255)
+  slug       String   @db.VarChar(255)
   tracklist  String   @db.Text
   releasedAt DateTime
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 
-  @@unique([title])
+  @@unique([title, slug])
 }
