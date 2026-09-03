@@ -201,6 +201,7 @@ export type UserWhereInput = {
   sessions?: Prisma.SessionListRelationFilter
   accounts?: Prisma.AccountListRelationFilter
   clips?: Prisma.ClipListRelationFilter
+  albums?: Prisma.AlbumListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -214,6 +215,7 @@ export type UserOrderByWithRelationInput = {
   sessions?: Prisma.SessionOrderByRelationAggregateInput
   accounts?: Prisma.AccountOrderByRelationAggregateInput
   clips?: Prisma.ClipOrderByRelationAggregateInput
+  albums?: Prisma.AlbumOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -230,6 +232,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   sessions?: Prisma.SessionListRelationFilter
   accounts?: Prisma.AccountListRelationFilter
   clips?: Prisma.ClipListRelationFilter
+  albums?: Prisma.AlbumListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -269,6 +272,7 @@ export type UserCreateInput = {
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   clips?: Prisma.ClipCreateNestedManyWithoutUserInput
+  albums?: Prisma.AlbumCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -282,6 +286,7 @@ export type UserUncheckedCreateInput = {
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   clips?: Prisma.ClipUncheckedCreateNestedManyWithoutUserInput
+  albums?: Prisma.AlbumUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -295,6 +300,7 @@ export type UserUpdateInput = {
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   clips?: Prisma.ClipUpdateManyWithoutUserNestedInput
+  albums?: Prisma.AlbumUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -308,6 +314,7 @@ export type UserUncheckedUpdateInput = {
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   clips?: Prisma.ClipUncheckedUpdateManyWithoutUserNestedInput
+  albums?: Prisma.AlbumUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -433,6 +440,20 @@ export type UserUpdateOneRequiredWithoutClipsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutClipsInput, Prisma.UserUpdateWithoutClipsInput>, Prisma.UserUncheckedUpdateWithoutClipsInput>
 }
 
+export type UserCreateNestedOneWithoutAlbumsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAlbumsInput, Prisma.UserUncheckedCreateWithoutAlbumsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAlbumsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutAlbumsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAlbumsInput, Prisma.UserUncheckedCreateWithoutAlbumsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAlbumsInput
+  upsert?: Prisma.UserUpsertWithoutAlbumsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAlbumsInput, Prisma.UserUpdateWithoutAlbumsInput>, Prisma.UserUncheckedUpdateWithoutAlbumsInput>
+}
+
 export type UserCreateWithoutSessionsInput = {
   id: string
   name: string
@@ -443,6 +464,7 @@ export type UserCreateWithoutSessionsInput = {
   updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   clips?: Prisma.ClipCreateNestedManyWithoutUserInput
+  albums?: Prisma.AlbumCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
@@ -455,6 +477,7 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   clips?: Prisma.ClipUncheckedCreateNestedManyWithoutUserInput
+  albums?: Prisma.AlbumUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -483,6 +506,7 @@ export type UserUpdateWithoutSessionsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   clips?: Prisma.ClipUpdateManyWithoutUserNestedInput
+  albums?: Prisma.AlbumUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -495,6 +519,7 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   clips?: Prisma.ClipUncheckedUpdateManyWithoutUserNestedInput
+  albums?: Prisma.AlbumUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAccountsInput = {
@@ -507,6 +532,7 @@ export type UserCreateWithoutAccountsInput = {
   updatedAt?: Date | string
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   clips?: Prisma.ClipCreateNestedManyWithoutUserInput
+  albums?: Prisma.AlbumCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAccountsInput = {
@@ -519,6 +545,7 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   updatedAt?: Date | string
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   clips?: Prisma.ClipUncheckedCreateNestedManyWithoutUserInput
+  albums?: Prisma.AlbumUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAccountsInput = {
@@ -547,6 +574,7 @@ export type UserUpdateWithoutAccountsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   clips?: Prisma.ClipUpdateManyWithoutUserNestedInput
+  albums?: Prisma.AlbumUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -559,6 +587,7 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   clips?: Prisma.ClipUncheckedUpdateManyWithoutUserNestedInput
+  albums?: Prisma.AlbumUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutClipsInput = {
@@ -571,6 +600,7 @@ export type UserCreateWithoutClipsInput = {
   updatedAt?: Date | string
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  albums?: Prisma.AlbumCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutClipsInput = {
@@ -583,6 +613,7 @@ export type UserUncheckedCreateWithoutClipsInput = {
   updatedAt?: Date | string
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  albums?: Prisma.AlbumUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutClipsInput = {
@@ -611,6 +642,7 @@ export type UserUpdateWithoutClipsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  albums?: Prisma.AlbumUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutClipsInput = {
@@ -623,6 +655,75 @@ export type UserUncheckedUpdateWithoutClipsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  albums?: Prisma.AlbumUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutAlbumsInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  clips?: Prisma.ClipCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutAlbumsInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  clips?: Prisma.ClipUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutAlbumsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutAlbumsInput, Prisma.UserUncheckedCreateWithoutAlbumsInput>
+}
+
+export type UserUpsertWithoutAlbumsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAlbumsInput, Prisma.UserUncheckedUpdateWithoutAlbumsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAlbumsInput, Prisma.UserUncheckedCreateWithoutAlbumsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutAlbumsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAlbumsInput, Prisma.UserUncheckedUpdateWithoutAlbumsInput>
+}
+
+export type UserUpdateWithoutAlbumsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  clips?: Prisma.ClipUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutAlbumsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  clips?: Prisma.ClipUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -634,12 +735,14 @@ export type UserCountOutputType = {
   sessions: number
   accounts: number
   clips: number
+  albums: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sessions?: boolean | UserCountOutputTypeCountSessionsArgs
   accounts?: boolean | UserCountOutputTypeCountAccountsArgs
   clips?: boolean | UserCountOutputTypeCountClipsArgs
+  albums?: boolean | UserCountOutputTypeCountAlbumsArgs
 }
 
 /**
@@ -673,6 +776,13 @@ export type UserCountOutputTypeCountClipsArgs<ExtArgs extends runtime.Types.Exte
   where?: Prisma.ClipWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountAlbumsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AlbumWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -685,6 +795,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
   clips?: boolean | Prisma.User$clipsArgs<ExtArgs>
+  albums?: boolean | Prisma.User$albumsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -723,6 +834,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
   clips?: boolean | Prisma.User$clipsArgs<ExtArgs>
+  albums?: boolean | Prisma.User$albumsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -734,6 +846,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     sessions: Prisma.$SessionPayload<ExtArgs>[]
     accounts: Prisma.$AccountPayload<ExtArgs>[]
     clips: Prisma.$ClipPayload<ExtArgs>[]
+    albums: Prisma.$AlbumPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1140,6 +1253,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   sessions<T extends Prisma.User$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   accounts<T extends Prisma.User$accountsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   clips<T extends Prisma.User$clipsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$clipsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  albums<T extends Prisma.User$albumsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$albumsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AlbumPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1638,6 +1752,30 @@ export type User$clipsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
   take?: number
   skip?: number
   distinct?: Prisma.ClipScalarFieldEnum | Prisma.ClipScalarFieldEnum[]
+}
+
+/**
+ * User.albums
+ */
+export type User$albumsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Album
+   */
+  select?: Prisma.AlbumSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Album
+   */
+  omit?: Prisma.AlbumOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AlbumInclude<ExtArgs> | null
+  where?: Prisma.AlbumWhereInput
+  orderBy?: Prisma.AlbumOrderByWithRelationInput | Prisma.AlbumOrderByWithRelationInput[]
+  cursor?: Prisma.AlbumWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AlbumScalarFieldEnum | Prisma.AlbumScalarFieldEnum[]
 }
 
 /**

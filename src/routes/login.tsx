@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { useForm } from '@tanstack/react-form'
 import { authClient } from '../../auth-client.ts'
 import { z } from 'zod'
@@ -17,6 +17,7 @@ const formValidator = z.object({
 })
 
 function RouteComponent() {
+  const navigate = useNavigate()
   const [authError, setAuthError] = useState<string|null>(null)
   const form = useForm({
     defaultValues: {
@@ -33,6 +34,12 @@ function RouteComponent() {
           email: value.email,
         },
         {
+          onSuccess: () => {
+            form.reset()
+            navigate({
+              to:"/dashboard"
+            })
+          },
           onError: (ctx) => {
             form.resetField('password')
             if (ctx.error.status === 401) {

@@ -34,6 +34,9 @@ function RootDocument({ children }: { children: React.ReactNode }) {
   const menu:Menu[] = [{
     label: "Accueil",
     url: "/"
+  }, {
+    label: "Quelques albums",
+    url: "/albums"
   }]
   return (
     <html lang="en">
