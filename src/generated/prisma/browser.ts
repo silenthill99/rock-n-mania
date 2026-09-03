@@ -47,3 +47,8 @@ export type Clip = Prisma.ClipModel
  * 
  */
 export type Todo = Prisma.TodoModel
+/**
+ * Model Album
+ * 
+ */
+export type Album = Prisma.AlbumModel

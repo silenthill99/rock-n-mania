@@ -56,7 +56,8 @@ export const ModelName = {
   Account: 'Account',
   Verification: 'Verification',
   Clip: 'Clip',
-  Todo: 'Todo'
+  Todo: 'Todo',
+  Album: 'Album'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -150,11 +151,22 @@ export const TodoScalarFieldEnum = {
   id: 'id',
   title: 'title',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  userId: 'userId'
+  updatedAt: 'updatedAt'
 } as const
 
 export type TodoScalarFieldEnum = (typeof TodoScalarFieldEnum)[keyof typeof TodoScalarFieldEnum]
+
+
+export const AlbumScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  tracklist: 'tracklist',
+  releasedAt: 'releasedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AlbumScalarFieldEnum = (typeof AlbumScalarFieldEnum)[keyof typeof AlbumScalarFieldEnum]
 
 
 export const SortOrder = {
