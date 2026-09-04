@@ -18,6 +18,7 @@ import { Route as AlbumsIndexRouteImport } from './routes/albums/index'
 import { Route as ProtectedAlbumsNewRouteImport } from './routes/_protected/albums/new'
 import { Route as AlbumsSlugIndexRouteImport } from './routes/albums/$slug/index'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
+import { Route as ProtectedAlbumsSlugEditRouteImport } from './routes/_protected/albums/$slug/edit'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -63,6 +64,11 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   path: '/api/auth/$',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProtectedAlbumsSlugEditRoute = ProtectedAlbumsSlugEditRouteImport.update({
+  id: '/albums/$slug/edit',
+  path: '/albums/$slug/edit',
+  getParentRoute: () => ProtectedRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -73,6 +79,7 @@ export interface FileRoutesByFullPath {
   '/albums/new': typeof ProtectedAlbumsNewRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/albums/$slug/': typeof AlbumsSlugIndexRoute
+  '/albums/$slug/edit': typeof ProtectedAlbumsSlugEditRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -83,6 +90,7 @@ export interface FileRoutesByTo {
   '/albums/new': typeof ProtectedAlbumsNewRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/albums/$slug': typeof AlbumsSlugIndexRoute
+  '/albums/$slug/edit': typeof ProtectedAlbumsSlugEditRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -95,6 +103,7 @@ export interface FileRoutesById {
   '/_protected/albums/new': typeof ProtectedAlbumsNewRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/albums/$slug/': typeof AlbumsSlugIndexRoute
+  '/_protected/albums/$slug/edit': typeof ProtectedAlbumsSlugEditRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -107,6 +116,7 @@ export interface FileRouteTypes {
     | '/albums/new'
     | '/api/auth/$'
     | '/albums/$slug/'
+    | '/albums/$slug/edit'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -117,6 +127,7 @@ export interface FileRouteTypes {
     | '/albums/new'
     | '/api/auth/$'
     | '/albums/$slug'
+    | '/albums/$slug/edit'
   id:
     | '__root__'
     | '/'
@@ -128,6 +139,7 @@ export interface FileRouteTypes {
     | '/_protected/albums/new'
     | '/api/auth/$'
     | '/albums/$slug/'
+    | '/_protected/albums/$slug/edit'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -205,17 +217,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAuthSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_protected/albums/$slug/edit': {
+      id: '/_protected/albums/$slug/edit'
+      path: '/albums/$slug/edit'
+      fullPath: '/albums/$slug/edit'
+      preLoaderRoute: typeof ProtectedAlbumsSlugEditRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
   }
 }
 
 interface ProtectedRouteChildren {
   ProtectedDashboardRoute: typeof ProtectedDashboardRoute
   ProtectedAlbumsNewRoute: typeof ProtectedAlbumsNewRoute
+  ProtectedAlbumsSlugEditRoute: typeof ProtectedAlbumsSlugEditRoute
 }
 
 const ProtectedRouteChildren: ProtectedRouteChildren = {
   ProtectedDashboardRoute: ProtectedDashboardRoute,
   ProtectedAlbumsNewRoute: ProtectedAlbumsNewRoute,
+  ProtectedAlbumsSlugEditRoute: ProtectedAlbumsSlugEditRoute,
 }
 
 const ProtectedRouteWithChildren = ProtectedRoute._addFileChildren(

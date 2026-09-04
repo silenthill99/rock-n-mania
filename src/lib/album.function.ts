@@ -18,12 +18,13 @@ export const updateAlbum = createServerFn({ method: 'POST' })
     const session = await ensureSession()
     return await prisma.album.update({
       where: {
-        id: data.id,
+        slug: data.slug,
+        userId: session.user.id
       },
       data: {
         title: data.title,
         releasedAt: data.releasedAt,
-        userId: session.user.id,
+        tracklist: data.tracklist
       },
     })
   })
@@ -66,17 +67,11 @@ export const getAlbum = createServerFn({ method: 'GET' })
 export const deleteAlbum = createServerFn({ method: 'POST' })
   .validator((data: { slug: string }) => data)
   .handler(async ({ data }) => {
-    const album = await prisma.album.findFirst({
-      where: {slug: data.slug}
-    })
-
-    if (!album) {
-      throw new Error(`Album not found`)
-    }
-
+    const session = await ensureSession()
     return await prisma.album.delete({
       where: {
-        slug: album.slug
-      }
+        slug: data.slug,
+        userId: session.user.id,
+      },
     })
   })

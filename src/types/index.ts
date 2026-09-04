@@ -6,6 +6,7 @@ export interface Menu {
 export interface Album {
   id: number
   title: string,
+  slug: string,
   tracklist: string,
   releasedAt: Date
 }
