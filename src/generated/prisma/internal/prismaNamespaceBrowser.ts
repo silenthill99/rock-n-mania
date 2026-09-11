@@ -57,7 +57,8 @@ export const ModelName = {
   Verification: 'Verification',
   Clip: 'Clip',
   Todo: 'Todo',
-  Album: 'Album'
+  Album: 'Album',
+  Artist: 'Artist'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -166,10 +167,31 @@ export const AlbumScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   userId: 'userId',
-  image_path: 'image_path'
+  image_path: 'image_path',
+  artistId: 'artistId'
 } as const
 
 export type AlbumScalarFieldEnum = (typeof AlbumScalarFieldEnum)[keyof typeof AlbumScalarFieldEnum]
+
+
+export const ArtistScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  name: 'name',
+  slug: 'slug',
+  started_at: 'started_at',
+  ended_at: 'ended_at',
+  image_path: 'image_path',
+  logo_path: 'logo_path',
+  country: 'country',
+  city: 'city',
+  short_biography: 'short_biography',
+  website_url: 'website_url',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type ArtistScalarFieldEnum = (typeof ArtistScalarFieldEnum)[keyof typeof ArtistScalarFieldEnum]
 
 
 export const SortOrder = {

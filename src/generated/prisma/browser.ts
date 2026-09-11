@@ -52,3 +52,8 @@ export type Todo = Prisma.TodoModel
  * 
  */
 export type Album = Prisma.AlbumModel
+/**
+ * Model Artist
+ * 
+ */
+export type Artist = Prisma.ArtistModel

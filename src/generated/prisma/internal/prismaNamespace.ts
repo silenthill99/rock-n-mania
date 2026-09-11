@@ -403,7 +403,8 @@ export const ModelName = {
   Verification: 'Verification',
   Clip: 'Clip',
   Todo: 'Todo',
-  Album: 'Album'
+  Album: 'Album',
+  Artist: 'Artist'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -419,7 +420,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "session" | "account" | "verification" | "clip" | "todo" | "album"
+    modelProps: "user" | "session" | "account" | "verification" | "clip" | "todo" | "album" | "artist"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -941,6 +942,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Artist: {
+      payload: Prisma.$ArtistPayload<ExtArgs>
+      fields: Prisma.ArtistFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ArtistFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ArtistPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ArtistFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ArtistPayload>
+        }
+        findFirst: {
+          args: Prisma.ArtistFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ArtistPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ArtistFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ArtistPayload>
+        }
+        findMany: {
+          args: Prisma.ArtistFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ArtistPayload>[]
+        }
+        create: {
+          args: Prisma.ArtistCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ArtistPayload>
+        }
+        createMany: {
+          args: Prisma.ArtistCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ArtistCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ArtistPayload>[]
+        }
+        delete: {
+          args: Prisma.ArtistDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ArtistPayload>
+        }
+        update: {
+          args: Prisma.ArtistUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ArtistPayload>
+        }
+        deleteMany: {
+          args: Prisma.ArtistDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ArtistUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ArtistUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ArtistPayload>[]
+        }
+        upsert: {
+          args: Prisma.ArtistUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ArtistPayload>
+        }
+        aggregate: {
+          args: Prisma.ArtistAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateArtist>
+        }
+        groupBy: {
+          args: Prisma.ArtistGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ArtistGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ArtistCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ArtistCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1070,10 +1145,31 @@ export const AlbumScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   userId: 'userId',
-  image_path: 'image_path'
+  image_path: 'image_path',
+  artistId: 'artistId'
 } as const
 
 export type AlbumScalarFieldEnum = (typeof AlbumScalarFieldEnum)[keyof typeof AlbumScalarFieldEnum]
+
+
+export const ArtistScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  name: 'name',
+  slug: 'slug',
+  started_at: 'started_at',
+  ended_at: 'ended_at',
+  image_path: 'image_path',
+  logo_path: 'logo_path',
+  country: 'country',
+  city: 'city',
+  short_biography: 'short_biography',
+  website_url: 'website_url',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type ArtistScalarFieldEnum = (typeof ArtistScalarFieldEnum)[keyof typeof ArtistScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1326,6 +1422,7 @@ export type GlobalOmitConfig = {
   clip?: Prisma.ClipOmit
   todo?: Prisma.TodoOmit
   album?: Prisma.AlbumOmit
+  artist?: Prisma.ArtistOmit
 }
 
 /* Types for Logging */
