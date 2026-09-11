@@ -2,7 +2,7 @@
   "include": ["**/*.ts", "**/*.tsx", "eslint.config.js", "prettier.config.js", "vite.config.js"],
   
   "compilerOptions": {
-    "target": "ES2022",
+    "target": "ES2023",
     "jsx": "react-jsx",
     "module": "ESNext",
     "paths": {
@@ -24,6 +24,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+    "esModuleInterop": true
   }
 }

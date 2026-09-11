@@ -1,6 +1,6 @@
-import { PrismaClient } from '../src/generated/prisma/client.js'
+import { PrismaClient } from '#/generated/prisma/client.ts'
 
-import { getDatabaseUrl } from '../src/database-url.js'
+import { getDatabaseUrl } from '#/database-url.ts'
 
 import { PrismaPg } from '@prisma/adapter-pg'
 

@@ -104,6 +104,7 @@ model Album {
   image_path String   @db.VarChar(255)
   artistId   Int?
   artists    Artist[]
+  deezer_url String?  @db.VarChar(255)
 }
 
 model Artist {
