@@ -101,4 +101,25 @@ model Album {
   updatedAt  DateTime @updatedAt
   userId     String
   user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  image_path String   @db.VarChar(255)
+  artistId   Int?
+  artists    Artist[]
+}
+
+model Artist {
+  id              Int       @id @default(autoincrement())
+  type            String    @db.VarChar(255)
+  name            String    @unique @db.VarChar(255)
+  slug            String    @unique @db.VarChar(255)
+  started_at      DateTime
+  ended_at        DateTime?
+  image_path      String
+  logo_path       String?
+  country         String    @db.VarChar(255)
+  city            String
+  short_biography String    @db.Text
+  website_url     String    @db.VarChar()
+  created_at      DateTime  @default(now())
+  updated_at      DateTime  @updatedAt
+  albums          Album[]
 }

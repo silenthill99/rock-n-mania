@@ -1069,7 +1069,8 @@ export const AlbumScalarFieldEnum = {
   releasedAt: 'releasedAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  userId: 'userId'
+  userId: 'userId',
+  image_path: 'image_path'
 } as const
 
 export type AlbumScalarFieldEnum = (typeof AlbumScalarFieldEnum)[keyof typeof AlbumScalarFieldEnum]
