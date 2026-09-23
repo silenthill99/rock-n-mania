@@ -6,11 +6,12 @@ import { createServerFn } from '@tanstack/react-start'
 import { prisma } from '#/db.ts'
 import { ensureSession } from '#/lib/auth.functions.ts'
 import { Separator } from '#/components/ui/separator.tsx'
-import { Table } from '#/components/ui/table.tsx'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '#/components/ui/table.tsx'
+import { deleteAlbum } from '#/lib/album.function.ts'
 
 export const Route = createFileRoute('/_protected/dashboard')({
   component: RouteComponent,
-  loader: () => getUserWithAlbums(),
+  loader: () => Promise.all([getUserWithAlbums(), getUserWithClips()]),
 })
 
 const getUserWithAlbums = createServerFn().handler(async () => {
@@ -22,10 +23,20 @@ const getUserWithAlbums = createServerFn().handler(async () => {
   })
 })
 
+const getUserWithClips = createServerFn({method: "GET"})
+  .handler(async () => {
+    const {user} = await ensureSession()
+    return await prisma.clip.findMany({
+      where: {
+        userId: user.id,
+      }
+    })
+  })
+
 function RouteComponent() {
   const navigate = useNavigate()
   const { user } = Route.useRouteContext()
-  const albums = Route.useLoaderData()
+  const [albums, clips] = Route.useLoaderData()
   const form = useForm({
     onSubmit: async () => {
       await authClient.signOut()
@@ -48,16 +59,68 @@ function RouteComponent() {
           Se déconnecter
         </Button>
       </form>
-      <Separator/>
+      <Separator />
       <section>
         <h2>Albums</h2>
-        <Link to={"/albums/new"} className={buttonVariants({variant: "secondary"})}>Ajouter un nouvel album</Link>
+        <Link
+          to={'/albums/new'}
+          className={buttonVariants({ variant: 'secondary' })}
+        >
+          Ajouter un nouvel album
+        </Link>
         {albums.length !== 0 ? (
           <Table>
-
+            <TableHeader>
+              <TableRow>
+                <TableHead>ID</TableHead>
+                <TableHead>Titre</TableHead>
+                <TableHead>Actions</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {albums.map((album) => (
+                <TableRow key={album.id}>
+                  <TableCell>{album.id}</TableCell>
+                  <TableCell>{album.title}</TableCell>
+                  <TableCell>
+                    <Button type={"submit"}
+                            onClick={() => deleteAlbum({data: {slug: album.slug, image_path: album.image_path}})}
+                    >Supprimer</Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
           </Table>
         ) : (
           <p>Pas d'albums actuellement</p>
+        )}
+      </section>
+      <Separator />
+      <section>
+        <h2>Clips</h2>
+        {clips.length !== 0 ? (
+          <Table>
+            <TableHeader className={'text-white'}>
+              <TableRow>
+                <TableHead>ID</TableHead>
+                <TableHead>Titre</TableHead>
+                <TableHead>Actions</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {clips.map((clip) => (
+                <TableRow key={clip.id}>
+                  <TableCell>{clip.id}</TableCell>
+                  <TableCell>{clip.title}</TableCell>
+                  <TableCell>
+                    <Link to={"/clips/$id/update"} params={{id: String(clip.id)}} className={buttonVariants()}>Modifier le clip</Link>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        ) : (
+          <p>Pas de clips actuellement</p>
         )}
       </section>
     </div>

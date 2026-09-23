@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import {Card, CardHeader, CardTitle} from "#/components/ui/card.tsx";
+import {Card, CardContent, CardHeader, CardTitle} from "#/components/ui/card.tsx";
 import {getAlbums} from "#/lib/album.function.ts";
 
 export const Route = createFileRoute('/albums/')({
@@ -18,11 +18,20 @@ function RouteComponent() {
       ) : (
         <div className={'grid md:grid-cols-2 lg:grid-cols-3 gap-5'}>
           {albums.map((album) => (
-              <Card key={album.id}>
-                <CardHeader>
-                  <CardTitle>Album {album.title}</CardTitle>
-                </CardHeader>
-              </Card>
+            <Card key={album.id}>
+              <CardHeader>
+                <CardTitle>Album {album.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <img
+                  src={
+                    '/api/blob-image/file?url=' +
+                    encodeURIComponent(album.image_path)
+                  }
+                  alt={album.title}
+                />
+              </CardContent>
+            </Card>
           ))}
         </div>
       )}

@@ -1,17 +1,17 @@
 import { createServerFn } from '@tanstack/react-start'
-import { put } from '@vercel/blob'
+import { del, put } from '@vercel/blob'
 import { ensureSession } from '#/lib/auth.functions.ts'
 import { prisma } from '#/db.ts'
 import type { Album } from '#/types'
+import { z } from 'zod'
 
-export const getAlbums = createServerFn({ method: 'GET' }).handler(
-  async () =>
-    await prisma.album.findMany({
-      include: {
-        user: true,
-      },
-    }),
-)
+export const getAlbums = createServerFn({ method: 'GET' }).handler(async () => {
+  return await prisma.album.findMany({
+    include: {
+      user: true,
+    },
+  })
+})
 
 export const updateAlbum = createServerFn({ method: 'POST' })
   .validator((data: Album) => data)
@@ -20,12 +20,12 @@ export const updateAlbum = createServerFn({ method: 'POST' })
     return await prisma.album.update({
       where: {
         slug: data.slug,
-        userId: session.user.id
+        userId: session.user.id,
       },
       data: {
         title: data.title,
         releasedAt: data.releasedAt,
-        tracklist: data.tracklist
+        tracklist: data.tracklist,
       },
     })
   })
@@ -34,54 +34,29 @@ export const createAlbum = createServerFn({ method: 'POST' })
   .validator((data: FormData) => data)
   .handler(async ({ data }) => {
     const session = await ensureSession()
-
-    const title = data.get('title')
-    const tracklist = data.get('tracklist')
-    const releasedAt = data.get('releasedAt')
-    const image = data.get('image')
-
-    if (
-      typeof title !== 'string' ||
-      typeof tracklist !== 'string' ||
-      typeof releasedAt !== 'string' ||
-      !(image instanceof File)
-    ) {
-      throw new Error('Données invalides')
-    }
-
-    if (!image.type.startsWith('image/')) {
-      throw new Error('Le fichier doit être une image')
-    }
-
-    const parsedReleasedAt = new Date(releasedAt)
-    if (Number.isNaN(parsedReleasedAt.getTime())) {
-      throw new Error('Date de sortie invalide')
-    }
-
+    const title = data.get('title') as string
+    const image = data.get('image') as File
     const blob = await put(
       `albums/${crypto.randomUUID()}-${image.name}`,
       image,
       {
-        access: 'public',
+        access: 'private',
         contentType: image.type,
       },
     )
 
-    const slug = title
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .toLowerCase()
-      .trim()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-+|-+$/g, '')
-    return await prisma.album.create({
+    return prisma.album.create({
       data: {
         userId: session.user.id,
         title,
-        tracklist,
-        releasedAt: parsedReleasedAt,
-        slug,
+        tracklist: data.get('tracklist') as string,
+        releasedAt: new Date(data.get('releasedAt') as string),
+        slug: z.string().slugify().parse(title),
         image_path: blob.url,
+        deezer_url: data.get('deezer_url') as string,
+        artists: {
+          connect: data.getAll('artistId').map((id) => ({ id: Number(id) })),
+        },
       },
     })
   })
@@ -100,9 +75,14 @@ export const getAlbum = createServerFn({ method: 'GET' })
   })
 
 export const deleteAlbum = createServerFn({ method: 'POST' })
-  .validator((data: { slug: string }) => data)
+  .validator((data: { slug: string, image_path: string }) => data)
   .handler(async ({ data }) => {
     const session = await ensureSession()
+    await del(
+      data.image_path, {
+        token: process.env.BLOB_READ_WRITE_TOKEN
+      }
+    )
     return await prisma.album.delete({
       where: {
         slug: data.slug,

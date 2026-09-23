@@ -37,6 +37,9 @@ function RootDocument({ children }: { children: React.ReactNode }) {
   }, {
     label: "Quelques albums",
     url: "/albums"
+  }, {
+    label: "Clips",
+    url: "/clips"
   }]
   return (
     <html lang="en">

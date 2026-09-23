@@ -15,10 +15,14 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as ProtectedDashboardRouteImport } from './routes/_protected/dashboard'
 import { Route as AlbumsIndexRouteImport } from './routes/albums/index'
+import { Route as ClipsIndexRouteImport } from './routes/clips/index'
 import { Route as ProtectedAlbumsNewRouteImport } from './routes/_protected/albums/new'
+import { Route as ProtectedClipsNewRouteImport } from './routes/_protected/clips/new'
 import { Route as AlbumsSlugIndexRouteImport } from './routes/albums/$slug/index'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
+import { Route as ApiBlobImageSplatRouteImport } from './routes/api/blob-image/$'
 import { Route as ProtectedAlbumsSlugEditRouteImport } from './routes/_protected/albums/$slug/edit'
+import { Route as ProtectedClipsIdUpdateRouteImport } from './routes/_protected/clips/$id/update'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -49,9 +53,19 @@ const AlbumsIndexRoute = AlbumsIndexRouteImport.update({
   path: '/albums/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ClipsIndexRoute = ClipsIndexRouteImport.update({
+  id: '/clips/',
+  path: '/clips/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProtectedAlbumsNewRoute = ProtectedAlbumsNewRouteImport.update({
   id: '/albums/new',
   path: '/albums/new',
+  getParentRoute: () => ProtectedRoute,
+} as any)
+const ProtectedClipsNewRoute = ProtectedClipsNewRouteImport.update({
+  id: '/clips/new',
+  path: '/clips/new',
   getParentRoute: () => ProtectedRoute,
 } as any)
 const AlbumsSlugIndexRoute = AlbumsSlugIndexRouteImport.update({
@@ -64,9 +78,19 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   path: '/api/auth/$',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiBlobImageSplatRoute = ApiBlobImageSplatRouteImport.update({
+  id: '/api/blob-image/$',
+  path: '/api/blob-image/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProtectedAlbumsSlugEditRoute = ProtectedAlbumsSlugEditRouteImport.update({
   id: '/albums/$slug/edit',
   path: '/albums/$slug/edit',
+  getParentRoute: () => ProtectedRoute,
+} as any)
+const ProtectedClipsIdUpdateRoute = ProtectedClipsIdUpdateRouteImport.update({
+  id: '/clips/$id/update',
+  path: '/clips/$id/update',
   getParentRoute: () => ProtectedRoute,
 } as any)
 
@@ -76,10 +100,14 @@ export interface FileRoutesByFullPath {
   '/register': typeof RegisterRoute
   '/dashboard': typeof ProtectedDashboardRoute
   '/albums/': typeof AlbumsIndexRoute
+  '/clips/': typeof ClipsIndexRoute
   '/albums/new': typeof ProtectedAlbumsNewRoute
+  '/clips/new': typeof ProtectedClipsNewRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/api/blob-image/$': typeof ApiBlobImageSplatRoute
   '/albums/$slug/': typeof AlbumsSlugIndexRoute
   '/albums/$slug/edit': typeof ProtectedAlbumsSlugEditRoute
+  '/clips/$id/update': typeof ProtectedClipsIdUpdateRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -87,10 +115,14 @@ export interface FileRoutesByTo {
   '/register': typeof RegisterRoute
   '/dashboard': typeof ProtectedDashboardRoute
   '/albums': typeof AlbumsIndexRoute
+  '/clips': typeof ClipsIndexRoute
   '/albums/new': typeof ProtectedAlbumsNewRoute
+  '/clips/new': typeof ProtectedClipsNewRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/api/blob-image/$': typeof ApiBlobImageSplatRoute
   '/albums/$slug': typeof AlbumsSlugIndexRoute
   '/albums/$slug/edit': typeof ProtectedAlbumsSlugEditRoute
+  '/clips/$id/update': typeof ProtectedClipsIdUpdateRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -100,10 +132,14 @@ export interface FileRoutesById {
   '/register': typeof RegisterRoute
   '/_protected/dashboard': typeof ProtectedDashboardRoute
   '/albums/': typeof AlbumsIndexRoute
+  '/clips/': typeof ClipsIndexRoute
   '/_protected/albums/new': typeof ProtectedAlbumsNewRoute
+  '/_protected/clips/new': typeof ProtectedClipsNewRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/api/blob-image/$': typeof ApiBlobImageSplatRoute
   '/albums/$slug/': typeof AlbumsSlugIndexRoute
   '/_protected/albums/$slug/edit': typeof ProtectedAlbumsSlugEditRoute
+  '/_protected/clips/$id/update': typeof ProtectedClipsIdUpdateRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -113,10 +149,14 @@ export interface FileRouteTypes {
     | '/register'
     | '/dashboard'
     | '/albums/'
+    | '/clips/'
     | '/albums/new'
+    | '/clips/new'
     | '/api/auth/$'
+    | '/api/blob-image/$'
     | '/albums/$slug/'
     | '/albums/$slug/edit'
+    | '/clips/$id/update'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -124,10 +164,14 @@ export interface FileRouteTypes {
     | '/register'
     | '/dashboard'
     | '/albums'
+    | '/clips'
     | '/albums/new'
+    | '/clips/new'
     | '/api/auth/$'
+    | '/api/blob-image/$'
     | '/albums/$slug'
     | '/albums/$slug/edit'
+    | '/clips/$id/update'
   id:
     | '__root__'
     | '/'
@@ -136,10 +180,14 @@ export interface FileRouteTypes {
     | '/register'
     | '/_protected/dashboard'
     | '/albums/'
+    | '/clips/'
     | '/_protected/albums/new'
+    | '/_protected/clips/new'
     | '/api/auth/$'
+    | '/api/blob-image/$'
     | '/albums/$slug/'
     | '/_protected/albums/$slug/edit'
+    | '/_protected/clips/$id/update'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -148,7 +196,9 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   RegisterRoute: typeof RegisterRoute
   AlbumsIndexRoute: typeof AlbumsIndexRoute
+  ClipsIndexRoute: typeof ClipsIndexRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
+  ApiBlobImageSplatRoute: typeof ApiBlobImageSplatRoute
   AlbumsSlugIndexRoute: typeof AlbumsSlugIndexRoute
 }
 
@@ -196,11 +246,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AlbumsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/clips/': {
+      id: '/clips/'
+      path: '/clips'
+      fullPath: '/clips/'
+      preLoaderRoute: typeof ClipsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_protected/albums/new': {
       id: '/_protected/albums/new'
       path: '/albums/new'
       fullPath: '/albums/new'
       preLoaderRoute: typeof ProtectedAlbumsNewRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/clips/new': {
+      id: '/_protected/clips/new'
+      path: '/clips/new'
+      fullPath: '/clips/new'
+      preLoaderRoute: typeof ProtectedClipsNewRouteImport
       parentRoute: typeof ProtectedRoute
     }
     '/albums/$slug/': {
@@ -217,11 +281,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAuthSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/blob-image/$': {
+      id: '/api/blob-image/$'
+      path: '/api/blob-image/$'
+      fullPath: '/api/blob-image/$'
+      preLoaderRoute: typeof ApiBlobImageSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_protected/albums/$slug/edit': {
       id: '/_protected/albums/$slug/edit'
       path: '/albums/$slug/edit'
       fullPath: '/albums/$slug/edit'
       preLoaderRoute: typeof ProtectedAlbumsSlugEditRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/clips/$id/update': {
+      id: '/_protected/clips/$id/update'
+      path: '/clips/$id/update'
+      fullPath: '/clips/$id/update'
+      preLoaderRoute: typeof ProtectedClipsIdUpdateRouteImport
       parentRoute: typeof ProtectedRoute
     }
   }
@@ -230,13 +308,17 @@ declare module '@tanstack/react-router' {
 interface ProtectedRouteChildren {
   ProtectedDashboardRoute: typeof ProtectedDashboardRoute
   ProtectedAlbumsNewRoute: typeof ProtectedAlbumsNewRoute
+  ProtectedClipsNewRoute: typeof ProtectedClipsNewRoute
   ProtectedAlbumsSlugEditRoute: typeof ProtectedAlbumsSlugEditRoute
+  ProtectedClipsIdUpdateRoute: typeof ProtectedClipsIdUpdateRoute
 }
 
 const ProtectedRouteChildren: ProtectedRouteChildren = {
   ProtectedDashboardRoute: ProtectedDashboardRoute,
   ProtectedAlbumsNewRoute: ProtectedAlbumsNewRoute,
+  ProtectedClipsNewRoute: ProtectedClipsNewRoute,
   ProtectedAlbumsSlugEditRoute: ProtectedAlbumsSlugEditRoute,
+  ProtectedClipsIdUpdateRoute: ProtectedClipsIdUpdateRoute,
 }
 
 const ProtectedRouteWithChildren = ProtectedRoute._addFileChildren(
@@ -249,7 +331,9 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   RegisterRoute: RegisterRoute,
   AlbumsIndexRoute: AlbumsIndexRoute,
+  ClipsIndexRoute: ClipsIndexRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
+  ApiBlobImageSplatRoute: ApiBlobImageSplatRoute,
   AlbumsSlugIndexRoute: AlbumsSlugIndexRoute,
 }
 export const routeTree = rootRouteImport

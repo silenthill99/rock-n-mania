@@ -23,5 +23,6 @@ function RouteComponent() {
     throw new Error("You're not the owner of this album")
   }
 
-  return <div>Hello "/_protected/albums/$slug/edit"!</div>
+  return <div>
+  </div>
 }
