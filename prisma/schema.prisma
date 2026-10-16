@@ -118,7 +118,7 @@ model Artist {
   country         String    @db.VarChar(255)
   city            String
   short_biography String    @db.Text
-  website_url     String    @db.VarChar()
+  website_url     String?   @db.VarChar()
   created_at      DateTime  @default(now())
   updated_at      DateTime  @updatedAt
   albums          Album[]

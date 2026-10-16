@@ -9,7 +9,6 @@
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums.ts"
 import type * as Prisma from "../internal/prismaNamespace.ts"
 
 /**
@@ -245,7 +244,7 @@ export type ArtistGroupByOutputType = {
   country: string
   city: string
   short_biography: string
-  website_url: string
+  website_url: string | null
   created_at: Date
   updated_at: Date
   _count: ArtistCountAggregateOutputType | null
@@ -285,7 +284,7 @@ export type ArtistWhereInput = {
   country?: Prisma.StringFilter<"Artist"> | string
   city?: Prisma.StringFilter<"Artist"> | string
   short_biography?: Prisma.StringFilter<"Artist"> | string
-  website_url?: Prisma.StringFilter<"Artist"> | string
+  website_url?: Prisma.StringNullableFilter<"Artist"> | string | null
   created_at?: Prisma.DateTimeFilter<"Artist"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"Artist"> | Date | string
   albums?: Prisma.AlbumListRelationFilter
@@ -303,7 +302,7 @@ export type ArtistOrderByWithRelationInput = {
   country?: Prisma.SortOrder
   city?: Prisma.SortOrder
   short_biography?: Prisma.SortOrder
-  website_url?: Prisma.SortOrder
+  website_url?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   albums?: Prisma.AlbumOrderByRelationAggregateInput
@@ -324,7 +323,7 @@ export type ArtistWhereUniqueInput = Prisma.AtLeast<{
   country?: Prisma.StringFilter<"Artist"> | string
   city?: Prisma.StringFilter<"Artist"> | string
   short_biography?: Prisma.StringFilter<"Artist"> | string
-  website_url?: Prisma.StringFilter<"Artist"> | string
+  website_url?: Prisma.StringNullableFilter<"Artist"> | string | null
   created_at?: Prisma.DateTimeFilter<"Artist"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"Artist"> | Date | string
   albums?: Prisma.AlbumListRelationFilter
@@ -342,7 +341,7 @@ export type ArtistOrderByWithAggregationInput = {
   country?: Prisma.SortOrder
   city?: Prisma.SortOrder
   short_biography?: Prisma.SortOrder
-  website_url?: Prisma.SortOrder
+  website_url?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   _count?: Prisma.ArtistCountOrderByAggregateInput
@@ -367,7 +366,7 @@ export type ArtistScalarWhereWithAggregatesInput = {
   country?: Prisma.StringWithAggregatesFilter<"Artist"> | string
   city?: Prisma.StringWithAggregatesFilter<"Artist"> | string
   short_biography?: Prisma.StringWithAggregatesFilter<"Artist"> | string
-  website_url?: Prisma.StringWithAggregatesFilter<"Artist"> | string
+  website_url?: Prisma.StringNullableWithAggregatesFilter<"Artist"> | string | null
   created_at?: Prisma.DateTimeWithAggregatesFilter<"Artist"> | Date | string
   updated_at?: Prisma.DateTimeWithAggregatesFilter<"Artist"> | Date | string
 }
@@ -383,7 +382,7 @@ export type ArtistCreateInput = {
   country: string
   city: string
   short_biography: string
-  website_url: string
+  website_url?: string | null
   created_at?: Date | string
   updated_at?: Date | string
   albums?: Prisma.AlbumCreateNestedManyWithoutArtistsInput
@@ -401,7 +400,7 @@ export type ArtistUncheckedCreateInput = {
   country: string
   city: string
   short_biography: string
-  website_url: string
+  website_url?: string | null
   created_at?: Date | string
   updated_at?: Date | string
   albums?: Prisma.AlbumUncheckedCreateNestedManyWithoutArtistsInput
@@ -418,7 +417,7 @@ export type ArtistUpdateInput = {
   country?: Prisma.StringFieldUpdateOperationsInput | string
   city?: Prisma.StringFieldUpdateOperationsInput | string
   short_biography?: Prisma.StringFieldUpdateOperationsInput | string
-  website_url?: Prisma.StringFieldUpdateOperationsInput | string
+  website_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   albums?: Prisma.AlbumUpdateManyWithoutArtistsNestedInput
@@ -436,7 +435,7 @@ export type ArtistUncheckedUpdateInput = {
   country?: Prisma.StringFieldUpdateOperationsInput | string
   city?: Prisma.StringFieldUpdateOperationsInput | string
   short_biography?: Prisma.StringFieldUpdateOperationsInput | string
-  website_url?: Prisma.StringFieldUpdateOperationsInput | string
+  website_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   albums?: Prisma.AlbumUncheckedUpdateManyWithoutArtistsNestedInput
@@ -454,7 +453,7 @@ export type ArtistCreateManyInput = {
   country: string
   city: string
   short_biography: string
-  website_url: string
+  website_url?: string | null
   created_at?: Date | string
   updated_at?: Date | string
 }
@@ -470,7 +469,7 @@ export type ArtistUpdateManyMutationInput = {
   country?: Prisma.StringFieldUpdateOperationsInput | string
   city?: Prisma.StringFieldUpdateOperationsInput | string
   short_biography?: Prisma.StringFieldUpdateOperationsInput | string
-  website_url?: Prisma.StringFieldUpdateOperationsInput | string
+  website_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -487,7 +486,7 @@ export type ArtistUncheckedUpdateManyInput = {
   country?: Prisma.StringFieldUpdateOperationsInput | string
   city?: Prisma.StringFieldUpdateOperationsInput | string
   short_biography?: Prisma.StringFieldUpdateOperationsInput | string
-  website_url?: Prisma.StringFieldUpdateOperationsInput | string
+  website_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -610,7 +609,7 @@ export type ArtistCreateWithoutAlbumsInput = {
   country: string
   city: string
   short_biography: string
-  website_url: string
+  website_url?: string | null
   created_at?: Date | string
   updated_at?: Date | string
 }
@@ -627,7 +626,7 @@ export type ArtistUncheckedCreateWithoutAlbumsInput = {
   country: string
   city: string
   short_biography: string
-  website_url: string
+  website_url?: string | null
   created_at?: Date | string
   updated_at?: Date | string
 }
@@ -668,7 +667,7 @@ export type ArtistScalarWhereInput = {
   country?: Prisma.StringFilter<"Artist"> | string
   city?: Prisma.StringFilter<"Artist"> | string
   short_biography?: Prisma.StringFilter<"Artist"> | string
-  website_url?: Prisma.StringFilter<"Artist"> | string
+  website_url?: Prisma.StringNullableFilter<"Artist"> | string | null
   created_at?: Prisma.DateTimeFilter<"Artist"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"Artist"> | Date | string
 }
@@ -684,7 +683,7 @@ export type ArtistUpdateWithoutAlbumsInput = {
   country?: Prisma.StringFieldUpdateOperationsInput | string
   city?: Prisma.StringFieldUpdateOperationsInput | string
   short_biography?: Prisma.StringFieldUpdateOperationsInput | string
-  website_url?: Prisma.StringFieldUpdateOperationsInput | string
+  website_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -701,7 +700,7 @@ export type ArtistUncheckedUpdateWithoutAlbumsInput = {
   country?: Prisma.StringFieldUpdateOperationsInput | string
   city?: Prisma.StringFieldUpdateOperationsInput | string
   short_biography?: Prisma.StringFieldUpdateOperationsInput | string
-  website_url?: Prisma.StringFieldUpdateOperationsInput | string
+  website_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -718,7 +717,7 @@ export type ArtistUncheckedUpdateManyWithoutAlbumsInput = {
   country?: Prisma.StringFieldUpdateOperationsInput | string
   city?: Prisma.StringFieldUpdateOperationsInput | string
   short_biography?: Prisma.StringFieldUpdateOperationsInput | string
-  website_url?: Prisma.StringFieldUpdateOperationsInput | string
+  website_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -849,7 +848,7 @@ export type $ArtistPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     country: string
     city: string
     short_biography: string
-    website_url: string
+    website_url: string | null
     created_at: Date
     updated_at: Date
   }, ExtArgs["result"]["artist"]>
