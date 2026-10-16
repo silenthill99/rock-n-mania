@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { getAlbum } from '#/lib/album.function.ts'
+import { useForm } from '@tanstack/react-form'
 
 export const Route = createFileRoute('/_protected/albums/$slug/edit')({
   component: RouteComponent,
@@ -23,6 +24,22 @@ function RouteComponent() {
     throw new Error("You're not the owner of this album")
   }
 
+  const form = useForm({
+    defaultValues: {
+      title: album.title,
+      tracklist: album.tracklist,
+      releasedAt: album.releasedAt,
+      image: null,
+      deezer_url: album.deezer_url,
+      artists: album.artists
+    }
+  })
+
   return <div>
+    <div className={"container mx-auto"}>
+      <h1>Modifier un album</h1>
+      <form>
+      </form>
+    </div>
   </div>
 }

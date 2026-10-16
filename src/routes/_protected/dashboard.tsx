@@ -86,6 +86,7 @@ function RouteComponent() {
                     <Button type={"submit"}
                             onClick={() => deleteAlbum({data: {slug: album.slug, image_path: album.image_path}})}
                     >Supprimer</Button>
+                    <Link className={buttonVariants()} to={"/albums/$slug/edit"} params={{slug: album.slug}}>Modifier l'album</Link>
                   </TableCell>
                 </TableRow>
               ))}

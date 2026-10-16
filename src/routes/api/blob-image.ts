@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { get } from '@vercel/blob'
 
-export const Route = createFileRoute('/api/blob-image/$')({
+export const Route = createFileRoute('/api/blob-image')({
   server: {
     handlers: {
       GET: async ({request}: {request: Request}) => {

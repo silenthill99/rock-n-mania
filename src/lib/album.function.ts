@@ -36,11 +36,15 @@ export const createAlbum = createServerFn({ method: 'POST' })
     const session = await ensureSession()
     const title = data.get('title') as string
     const image = data.get('image') as File
+    const access = process.env.BLOB_ACCESS
+    if (access !== 'public' && access !== 'private') {
+      throw new Error("BLOB_ACCESS doit être 'public' ou 'private")
+    }
     const blob = await put(
       `albums/${crypto.randomUUID()}-${image.name}`,
       image,
       {
-        access: 'private',
+        access,
         contentType: image.type,
       },
     )
@@ -70,6 +74,7 @@ export const getAlbum = createServerFn({ method: 'GET' })
       },
       include: {
         user: true,
+        artists: true,
       },
     })
   })

@@ -17,22 +17,27 @@ function RouteComponent() {
         <p>Pas d'albums actuellement</p>
       ) : (
         <div className={'grid md:grid-cols-2 lg:grid-cols-3 gap-5'}>
-          {albums.map((album) => (
-            <Card key={album.id}>
-              <CardHeader>
-                <CardTitle>Album {album.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <img
-                  src={
-                    '/api/blob-image/file?url=' +
-                    encodeURIComponent(album.image_path)
-                  }
-                  alt={album.title}
-                />
-              </CardContent>
-            </Card>
-          ))}
+          {albums.map((album) => {
+            const imageSrc = album.image_path.includes(
+              '.private.blob.vercel-storage.com'
+            ) ? '/api/blob-image?url=' +
+              encodeURIComponent(album.image_path) : album.image_path
+            return (
+              <Card key={album.id}>
+                <CardHeader>
+                  <CardTitle>Album {album.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <img
+                    src={
+                      imageSrc
+                    }
+                    alt={album.title}
+                  />
+                </CardContent>
+              </Card>
+            )
+          })}
         </div>
       )}
     </div>

@@ -168,7 +168,6 @@ export const AlbumScalarFieldEnum = {
   updatedAt: 'updatedAt',
   userId: 'userId',
   image_path: 'image_path',
-  artistId: 'artistId',
   deezer_url: 'deezer_url'
 } as const
 
