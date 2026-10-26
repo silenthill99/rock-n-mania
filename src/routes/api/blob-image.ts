@@ -4,11 +4,11 @@ import { get } from '@vercel/blob'
 export const Route = createFileRoute('/api/blob-image')({
   server: {
     handlers: {
-      GET: async ({request}: {request: Request}) => {
+      GET: async ({ request }: { request: Request }) => {
         const url = new URL(request.url).searchParams.get('url')
 
         if (!url) {
-          return new Response('URL manquante', {status: 400})
+          return new Response('URL manquante', { status: 400 })
         }
 
         const blob = await get(url, {
@@ -26,7 +26,7 @@ export const Route = createFileRoute('/api/blob-image')({
             'Cache-Control': 'public, max-age=3600',
           },
         })
-      }
-    }
-  }
+      },
+    },
+  },
 })

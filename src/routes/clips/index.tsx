@@ -7,7 +7,7 @@ import { buttonVariants } from '#/components/ui/button.tsx'
 
 export const Route = createFileRoute('/clips/')({
   component: RouteComponent,
-  loader: () => getClips()
+  loader: () => getClips(),
 })
 
 function RouteComponent() {
@@ -16,16 +16,21 @@ function RouteComponent() {
 
   return (
     <div className={'container mx-auto'}>
-      <h1 className={"py-10"}>Liste des clips</h1>
+      <h1 className={'py-10'}>Liste des clips</h1>
       {session?.user && (
-        <Link to={"/clips/new"} className={buttonVariants({variant: "secondary"})}>Ajouter un clip</Link>
+        <Link
+          to={'/clips/new'}
+          className={buttonVariants({ variant: 'secondary' })}
+        >
+          Ajouter un clip
+        </Link>
       )}
       <div className={'grid gap-2 lg:grid-cols-3'}>
         {clips.length > 0 &&
           clips.map((clip, i) => (
             <div key={i} className={'border rounded-xl overflow-hidden p-2'}>
               <YoutubeVideos videoId={getVideoId(clip.url)} />
-              <h2 className={"text-2xl font-semibold"}>{clip.title}</h2>
+              <h2 className={'text-2xl font-semibold'}>{clip.title}</h2>
             </div>
           ))}
       </div>

@@ -17,7 +17,7 @@ export const Route = createRootRoute({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: 'Rock\'n\'Mania',
+        title: "Rock'n'Mania",
       },
     ],
     links: [
@@ -31,25 +31,29 @@ export const Route = createRootRoute({
 })
 
 function RootDocument({ children }: { children: React.ReactNode }) {
-  const menu:Menu[] = [{
-    label: "Accueil",
-    url: "/"
-  }, {
-    label: "Quelques albums",
-    url: "/albums"
-  }, {
-    label: "Clips",
-    url: "/clips"
-  }]
+  const menu: Menu[] = [
+    {
+      label: 'Accueil',
+      url: '/',
+    },
+    {
+      label: 'Quelques albums',
+      url: '/albums',
+    },
+    {
+      label: 'Clips',
+      url: '/clips',
+    },
+  ]
   return (
     <html lang="en">
       <head>
         <HeadContent />
       </head>
-      <body className={"bg-black text-white"}>
-      <header className={"container mx-auto"}>
-        <DesktopMenu menu={menu}/>
-      </header>
+      <body className={'bg-black text-white'}>
+        <header className={'container mx-auto'}>
+          <DesktopMenu menu={menu} />
+        </header>
         {children}
         <TanStackDevtools
           config={{

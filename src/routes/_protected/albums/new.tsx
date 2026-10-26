@@ -10,11 +10,18 @@ import type { ChangeEvent } from 'react'
 import { useState } from 'react'
 import { createServerFn } from '@tanstack/react-start'
 import { prisma } from '#/db.ts'
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '#/components/ui/select.tsx'
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '#/components/ui/select.tsx'
 
 export const Route = createFileRoute('/_protected/albums/new')({
   component: RouteComponent,
-  loader: () => getArtists()
+  loader: () => getArtists(),
 })
 
 const formValidators = z.object({
@@ -40,7 +47,7 @@ const formValidators = z.object({
         ),
       'Le lien Deezer est invalide',
     ),
-  artist: z.array(z.number().int().positive())
+  artist: z.array(z.number().int().positive()),
 })
 
 type FormValues = z.input<typeof formValidators>
@@ -85,7 +92,7 @@ function RouteComponent() {
     releasedAt: null,
     image: null,
     deezer_url: '',
-    artist: []
+    artist: [],
   }
 
   const form = useForm({
@@ -200,44 +207,52 @@ function RouteComponent() {
             </Field>
           )}
         />
-          <form.Field name={"deezer_url"} children={(field) => (
-              <Field>
-                  <FieldLabel htmlFor={field.name}>Lien Deezer</FieldLabel>
-                  <Input
-                      id={field.name}
-                      name={field.name}
-                      value={field.state.value}
-                      onBlur={field.handleBlur}
-                      onChange={e => field.handleChange(e.target.value)}
-                      aria-invalid={!field.state.meta.isValid}
-                  />
-                  <FieldError errors={field.state.meta.errors}/>
-              </Field>
-          )}/>
-        <form.Field name={"artist"} children={(field) => (
-          <Field>
-            <FieldLabel htmlFor={field.name}></FieldLabel>
-            <Select
-              name={field.name}
-              id={field.name}
-              items={items}
-              multiple
-              value={field.state.value}
-              onValueChange={(value) => field.handleChange(value)}
-            >
-              <SelectTrigger>
-                <SelectValue placeholder={"Nom de l'artiste"}/>
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  {items.map((item) => (
-                    <SelectItem key={item.value} value={item.value}>{item.label}</SelectItem>
-                  ))}
-                </SelectGroup>
-              </SelectContent>
-            </Select>
-          </Field>
-        )}/>
+        <form.Field
+          name={'deezer_url'}
+          children={(field) => (
+            <Field>
+              <FieldLabel htmlFor={field.name}>Lien Deezer</FieldLabel>
+              <Input
+                id={field.name}
+                name={field.name}
+                value={field.state.value}
+                onBlur={field.handleBlur}
+                onChange={(e) => field.handleChange(e.target.value)}
+                aria-invalid={!field.state.meta.isValid}
+              />
+              <FieldError errors={field.state.meta.errors} />
+            </Field>
+          )}
+        />
+        <form.Field
+          name={'artist'}
+          children={(field) => (
+            <Field>
+              <FieldLabel htmlFor={field.name}></FieldLabel>
+              <Select
+                name={field.name}
+                id={field.name}
+                items={items}
+                multiple
+                value={field.state.value}
+                onValueChange={(value) => field.handleChange(value)}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder={"Nom de l'artiste"} />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    {items.map((item) => (
+                      <SelectItem key={item.value} value={item.value}>
+                        {item.label}
+                      </SelectItem>
+                    ))}
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </Field>
+          )}
+        />
         <Button type={'submit'}>Créer un album</Button>
       </form>
     </div>

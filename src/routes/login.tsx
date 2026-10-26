@@ -18,7 +18,7 @@ const formValidator = z.object({
 
 function RouteComponent() {
   const navigate = useNavigate()
-  const [authError, setAuthError] = useState<string|null>(null)
+  const [authError, setAuthError] = useState<string | null>(null)
   const form = useForm({
     defaultValues: {
       email: '',
@@ -37,13 +37,13 @@ function RouteComponent() {
           onSuccess: () => {
             form.reset()
             navigate({
-              to:"/dashboard"
+              to: '/dashboard',
             })
           },
           onError: (ctx) => {
             form.resetField('password')
             if (ctx.error.status === 401) {
-              setAuthError("Identifiants invalides !")
+              setAuthError('Identifiants invalides !')
             }
           },
         },
@@ -51,7 +51,7 @@ function RouteComponent() {
     },
   })
   return (
-    <div className={"container mx-auto py-5"}>
+    <div className={'container mx-auto py-5'}>
       <h1>Se connecter</h1>
       <form
         onSubmit={(e) => {
@@ -73,7 +73,7 @@ function RouteComponent() {
                 onBlur={field.handleBlur}
                 onChange={(e) => field.handleChange(e.target.value)}
                 aria-invalid={!field.state.meta.isValid}
-                autoComplete={"username"}
+                autoComplete={'username'}
               />
               <FieldError errors={field.state.meta.errors} />
             </Field>
@@ -92,9 +92,9 @@ function RouteComponent() {
                 onBlur={field.handleBlur}
                 onChange={(e) => field.handleChange(e.target.value)}
                 aria-invalid={!field.state.meta.isValid}
-                autoComplete={"current-password"}
+                autoComplete={'current-password'}
               />
-              <FieldError errors={field.state.meta.errors}/>
+              <FieldError errors={field.state.meta.errors} />
             </Field>
           )}
         />

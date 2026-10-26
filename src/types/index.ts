@@ -1,12 +1,12 @@
 export interface Menu {
-  label: string;
+  label: string
   url: string
 }
 
 export interface Album {
   id: number
-  title: string,
-  slug: string,
-  tracklist: string,
+  title: string
+  slug: string
+  tracklist: string
   releasedAt: Date
 }

@@ -44,18 +44,18 @@ export const getClip = createServerFn({ method: 'GET' })
       }),
   )
 
-export const updateClip = createServerFn({method: 'POST'})
-  .validator((data: {id: number, title: string, url: string}) => data)
+export const updateClip = createServerFn({ method: 'POST' })
+  .validator((data: { id: number; title: string; url: string }) => data)
   .handler(async ({ data }) => {
-    const session = await ensureSession();
+    const session = await ensureSession()
     return await prisma.clip.update({
       where: {
         id: data.id,
-        userId: session.user.id
+        userId: session.user.id,
       },
       data: {
         title: data.title,
         url: data.url,
-      }
+      },
     })
   })

@@ -47,7 +47,7 @@ function RouteComponent() {
         {
           onSuccess: () => {
             form.reset()
-            navigate({to: '/'})
+            navigate({ to: '/' })
           },
           onError: () => {
             form.resetField('password')

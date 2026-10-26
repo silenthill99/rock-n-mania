@@ -62,7 +62,7 @@ function RouteComponent() {
                 onBlur={field.handleBlur}
                 aria-invalid={!field.state.meta.isValid}
               />
-              <FieldError errors={field.state.meta.errors}/>
+              <FieldError errors={field.state.meta.errors} />
             </Field>
           )}
         />
@@ -72,19 +72,19 @@ function RouteComponent() {
             <Field>
               <FieldLabel htmlFor={field.name}>URL</FieldLabel>
               <Input
-                type={"url"}
+                type={'url'}
                 id={field.name}
                 name={field.name}
                 value={field.state.value}
-                onChange={e => field.handleChange(e.target.value)}
+                onChange={(e) => field.handleChange(e.target.value)}
                 onBlur={field.handleBlur}
                 aria-invalid={!field.state.meta.isValid}
               />
-              <FieldError errors={field.state.meta.errors}/>
+              <FieldError errors={field.state.meta.errors} />
             </Field>
           )}
         />
-        <Button type={"submit"}>Modifier le clip</Button>
+        <Button type={'submit'}>Modifier le clip</Button>
       </form>
     </div>
   )

@@ -1,12 +1,16 @@
 import { createFileRoute } from '@tanstack/react-router'
-import {Card, CardContent, CardHeader, CardTitle} from "#/components/ui/card.tsx";
-import {getAlbums} from "#/lib/album.function.ts";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from '#/components/ui/card.tsx'
+import { getAlbums } from '#/lib/album.function.ts'
 
 export const Route = createFileRoute('/albums/')({
   component: RouteComponent,
   loader: () => getAlbums(),
 })
-
 
 function RouteComponent() {
   const albums = Route.useLoaderData()
@@ -19,21 +23,17 @@ function RouteComponent() {
         <div className={'grid md:grid-cols-2 lg:grid-cols-3 gap-5'}>
           {albums.map((album) => {
             const imageSrc = album.image_path.includes(
-              '.private.blob.vercel-storage.com'
-            ) ? '/api/blob-image?url=' +
-              encodeURIComponent(album.image_path) : album.image_path
+              '.private.blob.vercel-storage.com',
+            )
+              ? '/api/blob-image?url=' + encodeURIComponent(album.image_path)
+              : album.image_path
             return (
               <Card key={album.id}>
                 <CardHeader>
                   <CardTitle>Album {album.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <img
-                    src={
-                      imageSrc
-                    }
-                    alt={album.title}
-                  />
+                  <img src={imageSrc} alt={album.title} />
                 </CardContent>
               </Card>
             )

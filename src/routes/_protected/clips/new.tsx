@@ -10,29 +10,30 @@ export const Route = createFileRoute('/_protected/clips/new')({
   head: () => ({
     meta: [
       {
-        title: "Ajouter un clip"
-      }
-    ]
-  })
+        title: 'Ajouter un clip',
+      },
+    ],
+  }),
 })
 
 function RouteComponent() {
   const form = useForm({
     defaultValues: {
-      title: "",
-      url: "",
-    }, onSubmit: async ({value}) => {
+      title: '',
+      url: '',
+    },
+    onSubmit: async ({ value }) => {
       form.reset()
       await createClip({
         data: {
           title: value.title,
           url: value.url,
-        }
+        },
       })
     },
     validators: {
-      onSubmit: formValidator
-    }
+      onSubmit: formValidator,
+    },
   })
   return (
     <div className={'container mx-auto'}>
@@ -67,15 +68,15 @@ function RouteComponent() {
             <Field>
               <FieldLabel htmlFor={field.name}>URL</FieldLabel>
               <Input
-                type={"url"}
+                type={'url'}
                 id={field.name}
                 name={field.name}
                 value={field.state.value}
                 onBlur={field.handleBlur}
-                onChange={e => field.handleChange(e.target.value)}
+                onChange={(e) => field.handleChange(e.target.value)}
                 aria-invalid={!field.state.meta.isValid}
               />
-              <FieldError errors={field.state.meta.errors}/>
+              <FieldError errors={field.state.meta.errors} />
             </Field>
           )}
         />

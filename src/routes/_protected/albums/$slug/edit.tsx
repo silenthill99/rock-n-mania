@@ -4,15 +4,16 @@ import { useForm } from '@tanstack/react-form'
 
 export const Route = createFileRoute('/_protected/albums/$slug/edit')({
   component: RouteComponent,
-  loader: ({params}) => getAlbum({
-    data: {
-      slug: params.slug
-    }
-  })
+  loader: ({ params }) =>
+    getAlbum({
+      data: {
+        slug: params.slug,
+      },
+    }),
 })
 
 function RouteComponent() {
-  const {user} = Route.useRouteContext()
+  const { user } = Route.useRouteContext()
 
   const album = Route.useLoaderData()
 
@@ -31,15 +32,16 @@ function RouteComponent() {
       releasedAt: album.releasedAt,
       image: null,
       deezer_url: album.deezer_url,
-      artists: album.artists
-    }
+      artists: album.artists,
+    },
   })
 
-  return <div>
-    <div className={"container mx-auto"}>
-      <h1>Modifier un album</h1>
-      <form>
-      </form>
+  return (
+    <div>
+      <div className={'container mx-auto'}>
+        <h1>Modifier un album</h1>
+        <form></form>
+      </div>
     </div>
-  </div>
+  )
 }

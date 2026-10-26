@@ -2,10 +2,10 @@ type Props = {
   videoId: string
 }
 
-const YoutubeVideos = ({videoId}: Props) => {
+const YoutubeVideos = ({ videoId }: Props) => {
   return (
     <iframe
-      className={"max-w-full"}
+      className={'max-w-full'}
       width="560"
       height="315"
       src={`https://www.youtube.com/embed/${videoId}`}

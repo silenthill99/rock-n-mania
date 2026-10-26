@@ -6,18 +6,20 @@ export const Route = createFileRoute('/albums/$slug/')({
   loader: ({ params }) =>
     getAlbum({
       data: {
-        slug: params.slug
+        slug: params.slug,
       },
     }),
 })
-
 
 function RouteComponent() {
   const album = Route.useLoaderData()
   if (!album) {
     throw notFound()
   }
-  return <div>Hello "/albums/$slug/"!
-    <p>{album.title}</p>
-  </div>
+  return (
+    <div>
+      Hello "/albums/$slug/"!
+      <p>{album.title}</p>
+    </div>
+  )
 }

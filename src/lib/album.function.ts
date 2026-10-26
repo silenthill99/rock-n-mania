@@ -80,14 +80,12 @@ export const getAlbum = createServerFn({ method: 'GET' })
   })
 
 export const deleteAlbum = createServerFn({ method: 'POST' })
-  .validator((data: { slug: string, image_path: string }) => data)
+  .validator((data: { slug: string; image_path: string }) => data)
   .handler(async ({ data }) => {
     const session = await ensureSession()
-    await del(
-      data.image_path, {
-        token: process.env.BLOB_READ_WRITE_TOKEN
-      }
-    )
+    await del(data.image_path, {
+      token: process.env.BLOB_READ_WRITE_TOKEN,
+    })
     return await prisma.album.delete({
       where: {
         slug: data.slug,

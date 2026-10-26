@@ -6,7 +6,14 @@ import { createServerFn } from '@tanstack/react-start'
 import { prisma } from '#/db.ts'
 import { ensureSession } from '#/lib/auth.functions.ts'
 import { Separator } from '#/components/ui/separator.tsx'
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '#/components/ui/table.tsx'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '#/components/ui/table.tsx'
 import { deleteAlbum } from '#/lib/album.function.ts'
 
 export const Route = createFileRoute('/_protected/dashboard')({
@@ -23,15 +30,14 @@ const getUserWithAlbums = createServerFn().handler(async () => {
   })
 })
 
-const getUserWithClips = createServerFn({method: "GET"})
-  .handler(async () => {
-    const {user} = await ensureSession()
-    return await prisma.clip.findMany({
-      where: {
-        userId: user.id,
-      }
-    })
+const getUserWithClips = createServerFn({ method: 'GET' }).handler(async () => {
+  const { user } = await ensureSession()
+  return await prisma.clip.findMany({
+    where: {
+      userId: user.id,
+    },
   })
+})
 
 function RouteComponent() {
   const navigate = useNavigate()
@@ -83,10 +89,26 @@ function RouteComponent() {
                   <TableCell>{album.id}</TableCell>
                   <TableCell>{album.title}</TableCell>
                   <TableCell>
-                    <Button type={"submit"}
-                            onClick={() => deleteAlbum({data: {slug: album.slug, image_path: album.image_path}})}
-                    >Supprimer</Button>
-                    <Link className={buttonVariants()} to={"/albums/$slug/edit"} params={{slug: album.slug}}>Modifier l'album</Link>
+                    <Button
+                      type={'submit'}
+                      onClick={() =>
+                        deleteAlbum({
+                          data: {
+                            slug: album.slug,
+                            image_path: album.image_path,
+                          },
+                        })
+                      }
+                    >
+                      Supprimer
+                    </Button>
+                    <Link
+                      className={buttonVariants()}
+                      to={'/albums/$slug/edit'}
+                      params={{ slug: album.slug }}
+                    >
+                      Modifier l'album
+                    </Link>
                   </TableCell>
                 </TableRow>
               ))}
@@ -114,7 +136,13 @@ function RouteComponent() {
                   <TableCell>{clip.id}</TableCell>
                   <TableCell>{clip.title}</TableCell>
                   <TableCell>
-                    <Link to={"/clips/$id/update"} params={{id: String(clip.id)}} className={buttonVariants()}>Modifier le clip</Link>
+                    <Link
+                      to={'/clips/$id/update'}
+                      params={{ id: String(clip.id) }}
+                      className={buttonVariants()}
+                    >
+                      Modifier le clip
+                    </Link>
                   </TableCell>
                 </TableRow>
               ))}
